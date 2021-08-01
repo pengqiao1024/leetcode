@@ -6,6 +6,8 @@ package medium;
  */
 
 
+import utils.ListNode;
+
 /**
  * 两数相加
  * <p>
@@ -28,48 +30,31 @@ public class M2AddTwoNumbers {
         ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
         ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
         System.out.println(addTwoNumbers(l1, l2));
-
     }
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode tmpNode = new ListNode(0);
-        ListNode header = tmpNode;
-        int tmp = 0;//存储相加大于10要进位的值
-        while (l1 != null || l2 != null) {
-            int x = l1 != null ? l1.val : 0;
-            int y = l2 != null ? l2.val : 0;
-            int sum = x + y + tmp;
-            tmp = sum / 10;
-            tmpNode.next = new ListNode(sum % 10);
-            tmpNode = tmpNode.next;
+    private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode res = new ListNode(0);
+        ListNode header = res;
+        boolean height = false;//存储高一位的值
+        while (true) {
+            if (l1 == null && l2 == null) {
+                break;
+            }
+            int num1 = l1 == null ? 0 : l1.val;
+            int num2 = l2 == null ? 0 : l2.val;
+            int sum = num1 + num2 + (height ? 1 : 0);
+            height = sum >= 10;
+            res.next = new ListNode(height ? sum - 10 : sum);
+            res = res.next;
             l1 = l1 == null ? null : l1.next;
             l2 = l2 == null ? null : l2.next;
+
         }
-        if (tmp != 0) {
-            tmpNode.next = new ListNode(tmp);
+        if (height) {
+            res.next = new ListNode(1);
         }
         return header.next;
     }
 
-    static class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode(int x) {
-            val = x;
-        }
-
-        ListNode(int x, ListNode node) {
-            val = x;
-            next = node;
-        }
-
-        @Override
-        public String toString() {
-            return "ListNode{" +
-                    "val=" + val +
-                    ", next=" + next +
-                    '}';
-        }
-    }
 }

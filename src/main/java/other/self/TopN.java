@@ -1,6 +1,4 @@
-package self;
-
-import java.util.Random;
+package other.self;
 
 /**
  * @Author: 彭瞧  80276481

@@ -5,6 +5,8 @@ package easy;
  * @date: 2019/7/1 16:28
  */
 
+import utils.ListNode;
+
 /**
  * 删除链表中的节点
  * <p>
@@ -55,26 +57,5 @@ public class E237DeleteNode {
     }
 
 
-}
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-
-    ListNode(int x, ListNode node) {
-        val = x;
-        next = node;
-    }
-
-    @Override
-    public String toString() {
-        return "ListNode{" +
-                "val=" + val +
-                ", next=" + next +
-                '}';
-    }
 }

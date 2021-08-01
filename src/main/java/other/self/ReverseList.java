@@ -1,4 +1,4 @@
-package self;
+package other.self;
 
 /**
  * @Author: 彭瞧  80276481

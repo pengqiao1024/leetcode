@@ -14,11 +14,11 @@ package easy;
  * <p>
  * 示例：
  * 给定二叉树 [3,9,20,null,null,15,7]，
- *       3
- *      / \
- *     9  20
- *       /  \
- *      15   7
+ * 3
+ * / \
+ * 9  20
+ * /  \
+ * 15   7
  * 返回它的最大深度 3 。
  * <p>
  * 来源：力扣（LeetCode）
@@ -27,26 +27,21 @@ package easy;
  */
 public class E104MaxDepth {
     public static void main(String[] args) {
-        TreeNode root=new TreeNode(3,new TreeNode(9),new TreeNode(20,new TreeNode(15),new TreeNode(7)));
+        TreeNode root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
         System.out.println(maxDepth(root));
 
     }
-    public static int maxDepth(TreeNode root) {
-        if(root==null){
+
+    private static int maxDepth(TreeNode root) {
+        if (root == null) {
             return 0;
         }
-        if(root.left==null){
-            return root.right==null?1:maxDepth(root.right)+1;
-        }else if(root.right==null){
-            return maxDepth(root.left)+1;
-        }else{
-            int r=maxDepth(root.right)+1;
-            int l=maxDepth(root.left)+1;
-            return r>l?r:l;
-        }
+        int right = maxDepth(root.right);
+        int left = maxDepth(root.left);
+        return (right > left ? right : left) + 1;
     }
 
-    static   class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -54,10 +49,11 @@ public class E104MaxDepth {
         TreeNode(int x) {
             val = x;
         }
-        TreeNode(int x,TreeNode left , TreeNode right) {
-            val=x;
-            this.left=left;
-            this.right=right;
+
+        TreeNode(int x, TreeNode left, TreeNode right) {
+            val = x;
+            this.left = left;
+            this.right = right;
         }
 
         @Override
