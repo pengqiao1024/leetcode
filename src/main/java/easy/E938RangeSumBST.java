@@ -5,6 +5,8 @@ package easy;
  * @date: 2019/7/1 17:22
  */
 
+import utils.TreeNode;
+
 /**
  * 二叉搜索树的范围和
  * <p>
@@ -46,31 +48,6 @@ public class E938RangeSumBST {
             num += root.val + rangeSumBST(root.left, L, R);
         }
         return num;
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
     }
 }
 

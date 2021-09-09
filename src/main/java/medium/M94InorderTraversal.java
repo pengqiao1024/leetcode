@@ -6,6 +6,8 @@ package medium;
  */
 
 
+import utils.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -73,30 +75,5 @@ public class M94InorderTraversal {
         iprintRecursion(root.left, list);
         list.add(root.val);
         iprintRecursion(root.right, list);
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
     }
 }

@@ -22,10 +22,9 @@ public class ListNode {
 
     @Override
     public String toString() {
-        if (next != null) {
-            return val + "->" + next;
-        } else {
-            return "" + val;
-        }
+        return "ListNode{" +
+                "val=" + val +
+                ", next=" + next +
+                '}';
     }
 }

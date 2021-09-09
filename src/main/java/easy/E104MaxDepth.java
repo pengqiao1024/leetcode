@@ -5,6 +5,8 @@ package easy;
  * @date: 2019/7/1 17:14
  */
 
+import utils.TreeNode;
+
 /**
  * 二叉树的最大深度
  * <p>
@@ -41,29 +43,5 @@ public class E104MaxDepth {
         return (right > left ? right : left) + 1;
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
-    }
 }
 

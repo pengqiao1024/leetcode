@@ -5,6 +5,8 @@ package medium;
  * @date: 2019/7/3 19:19
  */
 
+import utils.TreeNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -67,30 +69,5 @@ public class M103ZigzagLevelOrder {
             flag = flag ? false : true;
         }
         return result;
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
     }
 }

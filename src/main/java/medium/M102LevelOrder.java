@@ -5,6 +5,8 @@ package medium;
  * @date: 2019/7/2 14:00
  */
 
+import utils.TreeNode;
+
 import java.util.*;
 
 /**
@@ -61,28 +63,4 @@ public class M102LevelOrder {
         return result;
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
-    }
 }

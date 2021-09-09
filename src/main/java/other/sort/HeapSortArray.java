@@ -77,7 +77,7 @@ public class HeapSortArray {
 
     private static int getParent(int index) {
 //        return (index + 1) / 2 - 1;
-        return index / 2;
+        return (index - 1) / 2;
     }
 
 

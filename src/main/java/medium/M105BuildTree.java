@@ -5,6 +5,8 @@ package medium;
  * @date: 2019/7/5 10:10
  */
 
+import utils.TreeNode;
+
 /**
  * 从前序与中序遍历序列构造二叉树
  * <p>
@@ -60,30 +62,5 @@ public class M105BuildTree {
         root.left = build(preorder, inorder, preStart + 1, preIndex, inStart, inEnd - 1);//inEnd preStart 为根节点
         root.right = build(preorder, inorder, preIndex + 1, preEnd, inIndex + 1, inEnd);
         return root;
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
     }
 }

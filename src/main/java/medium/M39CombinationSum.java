@@ -38,11 +38,11 @@ import java.util.*;
 public class M39CombinationSum {
 
     public static void main(String[] args) {
-        System.out.println(combinationSum(new int[]{2, 3, 5}, 8));
+        System.out.println(combinationSum(new int[]{7,3,9,6}, 6));
     }
 
     /**
-     * f(n)=f(n-1)+f(g(candidates(n)-candidates(n-1)))
+     *
      * g(y)为y在candidates中的位置
      *
      * @param candidates
@@ -50,16 +50,14 @@ public class M39CombinationSum {
      * @return
      */
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
-        if (candidates[0] > target) {
-            return null;
-        }
-        Arrays.sort(candidates);
         List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(candidates);
+        if (candidates[0] > target) {
+            return res;
+        }
         List<Integer> path = new ArrayList<>();
         combination(candidates, target, res, path, 0);
-        System.out.println(res);
-        System.out.println(path);
-        return null;
+        return res;
     }
 
 
