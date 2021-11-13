@@ -56,7 +56,6 @@ public class M236LowestCommonAncestor {
         if (pParents.size() > qParents.size()) {
             values = pParents.stream().map(node -> node.val).collect(Collectors.toSet());
             finds = qParents;
-            
         } else {
             values = qParents.stream().map(TreeNode::getVal).collect(Collectors.toSet());
             finds = pParents;

@@ -19,86 +19,27 @@ import java.util.List;
  */
 public class M152MaxProduct {
     public static void main(String[] args) {
-        int[] nums = new int[]{-2};
+        int[] nums = new int[]{2, 3, -2, 4,-1};
         System.out.println(maxProduct(nums));
     }
 
     public static int maxProduct(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
-        List<Integer> minusIndexes = new ArrayList<>();
-        List<Integer> maxProducts = new ArrayList<>();
-        int left = 0;
-        boolean hasZero = false;
+        int max = Integer.MIN_VALUE;
+        int imax = 1;
+        int imin = 1;
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                maxProducts.add(i == 0 ? 0 : maxProduct(nums, left, i - 1, minusIndexes));
-                left = i + 1;
-                minusIndexes = new ArrayList<>();
-                hasZero = true;
-                continue;
-            }
             if (nums[i] < 0) {
-                minusIndexes.add(i);
+                int tmp = imax;
+                imax = imin;
+                imin = tmp;
             }
-            if (i == nums.length - 1) {
-                maxProducts.add(maxProduct(nums, left, nums.length - 1, minusIndexes));
-            }
+            imax = Math.max(imax, imax * nums[i]);
+            imin = Math.min(imin, imin * nums[i]);
+            max = Math.max(max, imax);
+            System.out.println(imin + " " + imax + " " + max);
         }
-        int maxProduct = maxProducts.get(0);
-        for (Integer product : maxProducts) {
-            if (product > maxProduct) {
-                maxProduct = product;
-            }
-        }
-        if (maxProduct < 0 && hasZero) {
-            maxProduct = 0;
-        }
-        return maxProduct;
+        return max;
     }
 
-    /**
-     * 计算nums【left,right】区间计算的最大值，区间中无0值
-     *
-     * @param nums
-     * @param left
-     * @param right
-     * @param minusIndexes
-     * @return
-     */
-    private static int maxProduct(int[] nums, int left, int right, List<Integer> minusIndexes) {
-        if (left == right) {
-            return nums[left];
-        }
-        if (minusIndexes.size() % 2 == 0) {
-            return product(nums, left, right);
-        }
-        if (minusIndexes.size() == 1) {
-            int index = minusIndexes.get(0);
-            if (index == 0) {
-                return product(nums, index + 1, right);
-            }
-            if (index == nums.length - 1) {
-                return product(nums, left, index - 1);
-            }
-        }
-        return Math.max(product(nums, minusIndexes.get(0) + 1, right), product(nums, left, minusIndexes.get(minusIndexes.size() - 1) - 1));
-    }
 
-    /**
-     * 计算nums【left,right】区间的值
-     *
-     * @param nums
-     * @param left
-     * @param right
-     * @return
-     */
-    private static int product(int[] nums, int left, int right) {
-        int product = nums[left];
-        for (left = left + 1; left <= right; left++) {
-            product = product * nums[left];
-        }
-        return product;
-    }
 }

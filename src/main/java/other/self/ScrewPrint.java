@@ -1,5 +1,7 @@
 package other.self;
 
+import utils.Utils;
+
 /**
  * @Author: 彭瞧  80276481
  * @Date: 2021/4/19 15:16
@@ -7,9 +9,10 @@ package other.self;
  */
 public class ScrewPrint {
     public static void main(String[] args) {
-        int n = 6;//列数
-//        int m=2;//行数
-        screwPrint(n);
+        int n = 3;//列数
+        int m = 4;//行数
+        char[][] res = screwPrint2(n, m);
+        Utils.printArrayToMatrix(res);
     }
 
     /**
@@ -56,15 +59,64 @@ public class ScrewPrint {
     /**
      * 数组
      *
-     * @param n
+     * @param n 列
      */
-    private static void screwPrint2(int n) {
-        int cel = n % 2 == 0 ? n / 2 : n / 2 + 1;
+    private static char[][] screwPrint2(int n, int m) {
+        int cel = n < m ? (n + 1) / 2 : (m + 1) / 2;
+        char[][] res = new char[m][n];
+        char c = 'A';
         for (int i = 0; i < cel; i++) {
-            for (int k = i; k < n - i; k++) {
-
+            int startN = i;
+            int endN = n - 1 - i;
+            int startM = i;
+            int endM = m - 1 - i;
+            if (startN == endN) {//仅一列
+                //上->下
+                for (int k = startM; k <= endM; k++) {
+                    res[k][endN] = c;
+                    c = getNext(c);
+                }
+                return res;
             }
+            if (startM == endM) {//仅一行
+                //左->右
+                for (int k = startN; k <= endN; k++) {
+                    res[startM][k] = c;
+                    c = getNext(c);
+                }
+                return res;
+            }
+            //左->右
+            for (int k = startN; k <= endN; k++) {
+                res[startM][k] = c;
+                c = getNext(c);
+            }
+            //上->下
+            for (int k = startM + 1; k <= endM; k++) {
+                res[k][endN] = c;
+                c = getNext(c);
+            }
+            //右->左
+            for (int k = endN - 1; k >= startN; k--) {
+                res[endM][k] = c;
+                c = getNext(c);
+            }
+            //下->上
+            for (int k = endM - 1; k > startM; k--) {
+                res[k][startM] = c;
+                c = getNext(c);
+            }
+//            Utils.printArrayToMatrix(res);
+//            System.out.println();
         }
+        return res;
+    }
 
+    private static char getNext(char c) {
+        if (c == 'Z') {
+            return 'A';
+        } else {
+            return (char) (c + 1);
+        }
     }
 }
